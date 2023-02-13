@@ -13,7 +13,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 add_definitions(-D_WEBSOCKETPP_CPP11_STRICT_)
 
 # Add the third-party headers directory to the search path
-include_directories(SYSTEM "${PROJECT_SOURCE_DIR}/external")
+include_directories(SYSTEM "${PROJECT_SOURCE_DIR}/external" "${PROJECT_SOURCE_DIR}/include" )
 
 # Compile jsoncpp from source
 add_library(jsoncpp STATIC ${PROJECT_SOURCE_DIR}/external/jsoncpp.cpp)

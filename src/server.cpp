@@ -1,4 +1,5 @@
 #include "WebsocketServer.h"
+#include "myMesHandler.hpp"
 
 #include <iostream>
 #include <thread>
@@ -42,7 +43,6 @@ int main(int argc, char* argv[])
             for (auto key : args.getMemberNames()) {
                 std::clog << "\t" << key << ": " << args[key].asString() << std::endl;
             }
-            
             //Echo the message pack to the client
             server.sendMessage(conn, "message", args);
         });
@@ -51,14 +51,15 @@ int main(int argc, char* argv[])
     {
         mainEventLoop.post([conn, args, &server]()
         {
-            std::clog << "message handler on the main thread" << std::endl;
-            std::clog << "Message payload:" << std::endl;
-            for (auto key : args.getMemberNames()) {
-                std::clog << "\t" << key << ": " << args[key].asString() << std::endl;
-            }
+            // std::clog << "message handler on the main thread" << std::endl;
+            // std::clog << "Message payload:" << std::endl;
+            // for (auto key : args.getMemberNames()) {
+            //     std::clog << "\t" << key << ": " << args[key].asString() << std::endl;
+            // }
             
+            msgHandler("hello ...", server);
             //Echo the message pack to the client
-            server.sendMessage(conn, "mouse", args);
+            //server.sendMessage(conn, "mouse", args);
         });
     });
     //Start the networking thread
