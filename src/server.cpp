@@ -56,8 +56,8 @@ int main(int argc, char* argv[])
             // for (auto key : args.getMemberNames()) {
             //     std::clog << "\t" << key << ": " << args[key].asString() << std::endl;
             // }
-            
-            msgHandler("hello ...", server);
+
+            mouseHandler(args["mouse"].asString(), server);
             //Echo the message pack to the client
             //server.sendMessage(conn, "mouse", args);
         });

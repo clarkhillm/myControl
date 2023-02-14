@@ -2,4 +2,4 @@
 #include "WebsocketServer.h"
 #include <string>
 
-int msgHandler(std::string msg, WebsocketServer& server);
+int mouseHandler(std::string msg, WebsocketServer& server);

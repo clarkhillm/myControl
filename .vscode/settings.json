@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.js": "javascriptreact",
-        "string": "cpp"
+        "string": "cpp",
+        "xstring": "cpp"
     }
 }
