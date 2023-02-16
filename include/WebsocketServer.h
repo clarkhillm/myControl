@@ -67,6 +67,8 @@ class WebsocketServer
         //Sends a message to all connected clients
         //(Note: the data transmission will take place on the thread that called WebsocketServer::run())
         void broadcastMessage(const string& messageType, const Json::Value& arguments);
+
+        WebsocketEndpoint* getEndpoint(){return &endpoint;}
         
     protected:
         static Json::Value parseJson(const string& json);

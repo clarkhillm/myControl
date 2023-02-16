@@ -75,3 +75,10 @@ int mouseHandler(std::string msg, WebsocketServer &server)
 
     return 0;
 }
+
+int keyboardHandler(std::string msg, WebsocketServer& server){
+    clog << "msgHandler:" << msg << endl;
+    Json::Value messageObject = parseJson(msg);
+
+    return 0;
+}
