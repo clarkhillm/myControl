@@ -19,6 +19,7 @@ include_directories(SYSTEM "${PROJECT_SOURCE_DIR}/external" "${PROJECT_SOURCE_DI
 add_library(jsoncpp STATIC ${PROJECT_SOURCE_DIR}/external/jsoncpp.cpp)
 
 aux_source_directory(./src DIR_SRCS)
+aux_source_directory(./res DIR_SRCS)
 
 add_executable(controlService ${DIR_SRCS})
 target_link_libraries (controlService jsoncpp)
