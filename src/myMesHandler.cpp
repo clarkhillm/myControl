@@ -12,32 +12,12 @@ Json::Value parseJson(const string &json)
     return root;
 }
 
-enum SHORTCUT{
-    CTRL  =  VK_LCONTROL,
-    SHIFT =  VK_LSHIFT,
-    ALT   =  VK_MENU, 
-    ESC   =  VK_ESCAPE,
-    WIN   =  VK_LWIN,
-    BACK  =  VK_BACK,
-    TAB   =  VK_TAB,
-    ENTER =  VK_RETURN,
-    HOME  =  VK_HOME,
-    END   =  VK_END,
-    DEL   =  VK_DELETE,
-    INS   =  VK_INSERT,
-    UP    =  VK_UP,
-    DOWN  =  VK_DOWN,
-    RIGHT =  VK_RIGHT,
-    LEFT  =  VK_LEFT,
-    F1    =  VK_F1, F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,
-    PRTSC =  VK_PRINT,
-    A     =  65,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
-};
+
 
 void Click(int KEY)
 {
-    keybd_event(KEY ,0,KEYEVENTF_EXTENDEDKEY | 0, 0);            //相当于 keybd_event(KEY,0,0,0);
-    keybd_event(KEY ,0,KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP,0) ; //相当于 keybd_event(KEY,0,2,0);
+    keybd_event(KEY, 0, KEYEVENTF_EXTENDEDKEY | 0, 0);               // 相当于 keybd_event(KEY,0,0,0);
+    keybd_event(KEY, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0); // 相当于 keybd_event(KEY,0,2,0);
 }
 
 /*
@@ -53,31 +33,36 @@ int mousemap[3][2] = {
     //          0x0008                  0x0010
     {MOUSEEVENTF_RIGHTDOWN, MOUSEEVENTF_RIGHTUP}};
 
-
-
 void mouseClick(int c) // 0:左键  1:滚轮键  2:右键
 {
     mouse_event(mousemap[c][0], 0, 0, 0, 0);
     mouse_event(mousemap[c][1], 0, 0, 0, 0);
 }
 
-int mouseHandler(std::string msg, WebsocketServer &server)
+int mousePositionHandler(std::string msg, WebsocketServer &server)
 {
-    clog << "msgHandler:" << msg << endl;
+    clog << "mousePosition:" << msg << endl;
     Json::Value messageObject = parseJson(msg);
 
     clog << "x:" << messageObject["x"] << endl;
     clog << "y:" << messageObject["y"] << endl;
 
-    // GetCursorPos(&p);
     SetCursorPos(messageObject["x"].asInt(), messageObject["y"].asInt());
-    mouseClick(2);
-
     return 0;
 }
 
-int keyboardHandler(std::string msg, WebsocketServer& server){
-    clog << "msgHandler:" << msg << endl;
+int mouseButtonHandler(std::string msg, WebsocketServer &server)
+{
+    clog << "mouseButton:" << msg << endl;
+    Json::Value messageObject = parseJson(msg);
+
+    // mouseClick(2);
+    return 0;
+}
+
+int keyboardHandler(std::string msg, WebsocketServer &server)
+{
+    clog << "keyboard:" << msg << endl;
     Json::Value messageObject = parseJson(msg);
 
     return 0;
