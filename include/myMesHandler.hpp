@@ -25,6 +25,13 @@ enum SHORTCUT
     A = 65, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z 
 };
 
-int mousePositionHandler(std::string msg, WebsocketServer &server);
-int mouseButtonHandler(std::string msg, WebsocketServer &server);
-int keyboardHandler(std::string msg, WebsocketServer &server);
+
+
+
+int mouseMoveHandler(std::string msg, WebsocketServer &server);
+int mouseUpHandler(std::string msg, WebsocketServer &server);
+int mouseDownHandler(std::string msg, WebsocketServer &server);
+int mouseWheelHandler(std::string msg, WebsocketServer &server);
+
+int keyDownHandler(std::string msg, WebsocketServer &server);
+int keyUpHandler(std::string msg, WebsocketServer &server);
