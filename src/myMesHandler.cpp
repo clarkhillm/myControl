@@ -12,11 +12,13 @@ Json::Value parseJson(const string &json)
     return root;
 }
 
-void keyDown(int code){
+void keyDown(int code)
+{
     keybd_event(code, 0, 0, 0);
 }
 
-void keyUp(int code){
+void keyUp(int code)
+{
     keybd_event(code, 0, KEYEVENTF_KEYUP, 0);
 }
 
@@ -49,6 +51,7 @@ void mouseDown(int c)
 {
     mouse_event(mousemap[c][0], 0, 0, 0, 0);
 }
+
 void mouseUp(int c)
 {
     mouse_event(mousemap[c][1], 0, 0, 0, 0);
@@ -56,8 +59,7 @@ void mouseUp(int c)
 
 int mouseMoveHandler(std::string msg, WebsocketServer &server)
 {
-    clog << "mouse-move:\n"
-         << msg << endl;
+    clog << "mouse-move:\n" << msg << endl;
     Json::Value messageObject = parseJson(msg);
 
     clog << "x:" << messageObject["x"] << endl;
@@ -69,24 +71,29 @@ int mouseMoveHandler(std::string msg, WebsocketServer &server)
 
 int mouseDownHandler(std::string msg, WebsocketServer &server)
 {
-    clog << "mouse-down:" << msg << endl;
+    clog << "mouse-down:\n" << msg << endl;
     Json::Value messageObject = parseJson(msg);
+    clog << "key:" << messageObject["buttons"] << endl;
 
-    // mouseClick(2);
+    // mouseDown(messageObject["buttons"].asInt());
+
     return 0;
 }
 
 int mouseUpHandler(std::string msg, WebsocketServer &server)
 {
-    clog << "mouse-up:" << msg << endl;
+    clog << "mouse-up:\n" << msg << endl;
     Json::Value messageObject = parseJson(msg);
+    clog << "key:" << messageObject["buttons"] << endl;
+
+    // mouseUp(messageObject["buttons"].asInt());
 
     return 0;
 }
 
 int mouseWheelHandler(std::string msg, WebsocketServer &server)
 {
-    clog << "mouse-wheel:" << msg << endl;
+    clog << "mouse-wheel:\n" << msg << endl;
     Json::Value messageObject = parseJson(msg);
 
     return 0;
@@ -94,7 +101,7 @@ int mouseWheelHandler(std::string msg, WebsocketServer &server)
 
 int keyDownHandler(std::string msg, WebsocketServer &server)
 {
-    clog << "keyDwon:" << msg << endl;
+    clog << "keyDown:\n" << msg << endl;
     Json::Value messageObject = parseJson(msg);
 
     clog << "key:" << messageObject["key"] << endl;
@@ -107,9 +114,8 @@ int keyDownHandler(std::string msg, WebsocketServer &server)
 
 int keyUpHandler(std::string msg, WebsocketServer &server)
 {
-    clog << "keyUp:" << msg << endl;
+    clog << "keyUp:\n" << msg << endl;
     Json::Value messageObject = parseJson(msg);
-
 
     keyUp(messageObject["keyCode"].asInt());
 
