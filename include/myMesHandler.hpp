@@ -25,8 +25,7 @@ enum SHORTCUT
     A = 65, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z 
 };
 
-
-
+int registerHandler(asio::io_service &mainEventLoop, WebsocketServer &server);
 
 int mouseMoveHandler(std::string msg, WebsocketServer &server);
 int mouseUpHandler(std::string msg, WebsocketServer &server);
